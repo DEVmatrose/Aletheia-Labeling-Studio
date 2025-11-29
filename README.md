@@ -1,58 +1,96 @@
 # 🏛️ Aletheia Labeling Studio
 
-> *A modern, lightweight, and type-safe labeling tool for machine learning training data curation.*
+> *Manual review and validation interface for LLM-generated training data.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js)](https://vuejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 
-**Aletheia** is a Vue.js 3 component library for labeling and curating structured training data (JSON outputs) for LLM fine-tuning workflows. Unlike heavyweight annotation platforms focused on images or text, Aletheia specializes in **reviewing and editing AI-generated responses** before they enter your training pipeline.
+**The Problem:** You generate training data with LLMs (GPT, Claude, etc.) but need to manually verify quality before fine-tuning. Reviewing hundreds of JSON outputs in text editors is tedious and error-prone.
+
+**The Solution:** Aletheia provides a clean 3-panel interface to review LLM outputs dataset-by-dataset. Navigate with arrow keys, edit JSON, assign quality scores, approve or skip items.
+
+**Perfect for:** Any workflow where you generate structured JSON training data (meeting protocols, customer feedback analysis, classification tasks, Q&A pairs) and need human-in-the-loop validation before using it for model training.
 
 ---
 
-## ✨ Key Features
+**Das Problem:** Sie generieren Trainingsdaten mit LLMs (GPT, Claude usw.), müssen jedoch vor der Feinabstimmung die Qualität manuell überprüfen. Die Überprüfung hunderter JSON-Ausgaben in Texteditoren ist mühsam und fehleranfällig.
 
-- 🎨 **Modern UI** - Clean 3-column layout with Tailwind CSS, dark mode support
-- 📝 **JSON Editor** - Monaco Editor integration (VS Code-like syntax highlighting)
-- ✅ **Validation Rules** - Custom validation per category (quality scores, citations)
-- 🔄 **Queue Workflow** - Pending → In-Progress → Completed/Skipped state management
-- 📊 **Progress Tracking** - Real-time statistics, progress bars, average quality scores
-- ⌨️ **Keyboard Shortcuts** - `Ctrl+S` (save), `→` (next), `←` (previous), `Ctrl+K` (skip)
-- 🔌 **Backend-Agnostic** - Works with Supabase, REST, GraphQL, or local files
-- 💾 **Event-Driven** - Clean separation between UI and data persistence
-- 🎯 **TypeScript-First** - Full type safety with auto-generated `.d.ts` files
-- 📦 **Tiny Bundle** - Only **7 KB gzipped** (ES module)
+**Die Lösung:** Aletheia bietet eine übersichtliche 3-Panel-Oberfläche, um LLM-Ausgaben datensatzweise zu überprüfen. Navigieren Sie mit den Pfeiltasten, bearbeiten Sie JSON, vergeben Sie Qualitätsbewertungen, genehmigen oder überspringen Sie Elemente.
+
+**Ideal für:** Alle Arbeitsabläufe, bei denen Sie strukturierte JSON-Trainingsdaten generieren (Sitzungsprotokolle, Kundenfeedback-Analysen, Klassifizierungsaufgaben, Frage-Antwort-Paare) und eine Validierung durch Menschen benötigen, bevor Sie diese für das Modelltraining verwenden können.
+
+Übersetzt mit DeepL.com (kostenlose Version)
 
 ---
 
-## 📦 Installation
+## ✨ Why Aletheia?
 
-```bash
-npm install aletheia-labeling-studio
-```
+**Traditional Approach:**
+- ❌ Open 175 JSONL files in VS Code
+- ❌ Manually check each LLM output
+- ❌ Copy-paste to separate "approved" folder
+- ❌ No progress tracking
+- ❌ No quality scoring
+- ❌ Easy to miss errors
+
+**With Aletheia:**
+- ✅ Load all items in one interface
+- ✅ Review dataset-by-dataset with arrow keys
+- ✅ Edit JSON directly with live validation
+- ✅ Assign quality scores (0-100%)
+- ✅ Visual progress tracking (142 pending, 28 approved, 5 skipped)
+- ✅ Keyboard shortcuts for fast workflow
+- ✅ Backend-agnostic (JSON file, database, API - your choice)
+
+## 🎯 Core Features
+
+- 🎨 **3-Panel Layout** - Queue list, JSON editor, validation controls
+- 📝 **Live JSON Editing** - Syntax highlighting, validation, format button
+- ✅ **Quality Scoring** - 0-100% slider per item
+- 🏷️ **Categorization** - Custom categories/pillars (technical, research, business, etc.)
+- 🔄 **Status Tracking** - pending → completed / skipped
+- ⌨️ **Keyboard Navigation** - `→` next, `←` previous, `Ctrl+S` save, `Ctrl+K` skip
+- 📊 **Progress Dashboard** - Visual stats, completion percentage
+- 🔌 **Flexible Backend** - Props/Events API, connect to any data source
+- 📦 **Lightweight** - 7 KB gzipped, Vue 3 component
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Try the Demo
 
-### Try the Demo
-
+**Run locally:**
 ```bash
 git clone https://github.com/DEVmatrose/Aletheia-Labeling-Studio.git
 cd Aletheia-Labeling-Studio
 npm install
 npm run dev
-# → Open http://localhost:5175
+# → http://localhost:5175
 ```
 
-**Demo Features:**
-- ✅ 5 Mock training items (meeting protocols, customer feedback, email classification)
-- ✅ Click items in queue → Loads in editor
-- ✅ Edit JSON output with syntax highlighting
-- ✅ Quality score slider + category dropdown
-- ✅ Validate, Save (simulated), Skip buttons
-- ✅ Keyboard shortcuts work (Ctrl+S, arrows)
-- ⚠️ **Note:** Save actions are **simulated** (console log + toast notification) - no real database
+**What works in the demo:**
+1. **Click any item** in the queue (left panel) → Loads in editor
+2. **Edit JSON** in the center panel → Live validation (green/red border)
+3. **Set quality score** with slider (0-100%)
+4. **Choose category** from dropdown
+5. **Click "Validate Data"** → Checks if all required fields are set
+6. **Click "Approve & Save"** → Simulates API call (800ms delay)
+   - ✅ 90% success → Green toast notification
+   - ❌ 10% failure → Red error message
+   - Console logs full item data
+7. **Keyboard shortcuts** work: `Ctrl+S`, `→`, `←`, `Ctrl+K`
+
+**⚠️ Demo Limitation:** Save actions are **simulated only** - no database backend. Refresh = all changes lost.
+
+---
+
+## 📦 Installation (for your project)
+
+```bash
+npm install aletheia-labeling-studio
+```
+
+**Note:** Package not yet published to npm. Currently in demo/development phase.
 
 ### Use in Your Project
 
@@ -132,9 +170,8 @@ function handleSkip(item: AletheiaItem) {
 
 ## 📚 Documentation
 
-- **[Getting Started Guide](SETUP.md)** - Complete integration walkthrough
-- **[Technical Whitepaper](docs/WHITEPAPER.md)** - Architecture, design decisions, API reference
-- **[Demo](https://devmatrose.github.io/Aletheia-Labeling-Studio/)** *(Coming soon)*
+- **[Setup Guide](SETUP.md)** - Integration examples (Supabase, REST API, local files)
+- **[Technical Whitepaper](docs/WHITEPAPER.md)** - Complete architecture & API reference
 
 ---
 
@@ -216,30 +253,58 @@ async function handleSave(item: AletheiaItem) {
 
 ---
 
-## 💡 How the Demo Works
+## 💡 How It Works (Demo)
 
-### Mock Data Navigation
-1. **Click any item in Queue Panel** (left) → Loads Input/Output in center
-2. **Edit JSON** in Editor Panel → Real-time validation (green border = valid, red = error)
-3. **Set Quality Score** (0-100%) and select Category in Validation Panel (right)
-4. **Click "Validate Data"** → Checks completeness
-5. **Click "Approve & Save"** → Simulates API call:
-   - Loading spinner (800ms)
-   - 90% success → ✅ Green toast: "Item saved successfully!"
-   - 10% failure → ❌ Red toast: "Failed to save. Network timeout."
-   - Console log with full item data
-   - **⚠️ Important:** Changes are NOT persisted (no real database)
+### The Workflow You'll See
 
-### What's Simulated vs. Real
+**Scenario:** You generated 5 training datasets with an LLM (meeting summaries, feedback classifications). Now you need to verify quality before using them for fine-tuning.
 
-| Feature | Demo | Production |
-|---------|------|------------|
-| **Item Loading** | ✅ Real (from mock-data/samples.json) | Load from your backend |
-| **JSON Editing** | ✅ Real | Same |
-| **Validation** | ✅ Real | Same |
-| **Save Action** | ⚠️ Simulated (console + toast) | `@save` event → Your API call |
-| **Persistence** | ❌ None (refresh = reset) | ✅ Database |
-| **Multi-user** | ❌ | ✅ With backend state |
+**Step-by-step:**
+
+1. **Queue Panel (left):**
+   - Shows all 5 items with status badges
+   - Click any item → Loads in center panel
+   - See quality scores at a glance (color-coded)
+
+2. **Editor Panel (center):**
+   - **Input**: Original prompt/context (read-only)
+   - **Output**: LLM-generated JSON (editable)
+   - Edit mistakes directly, live validation shows errors
+
+3. **Validation Panel (right):**
+   - Set quality score: 0-100% slider
+   - Choose category: meeting-protocol, customer-feedback, email-classification
+   - Click "Validate Data" → Checks completeness
+   - Click "Approve & Save" → **Simulated** API call (800ms):
+     ```javascript
+     // 90% success, 10% failure (network timeout simulation)
+     setTimeout(() => {
+       toast.show('✅ Item saved to database!');
+       console.log('💾 Approved:', item);
+     }, 800);
+     ```
+
+4. **Navigation:**
+   - Arrow keys: `←` previous, `→` next
+   - Keyboard shortcuts: `Ctrl+S` save, `Ctrl+K` skip
+   - Progress bar updates automatically
+
+**⚠️ Demo Limitation:** Save actions are **simulated only** - no real database. Refresh = data resets. This is intentional to show the workflow without backend setup.
+
+### Demo vs. Your Production Setup
+
+| Feature | Demo | Your Implementation |
+|---------|------|---------------------|
+| **Data Source** | `samples.json` (5 items) | Load from Supabase, REST API, local JSONL files - your choice |
+| **Items** | 5 mock examples | Your 175+ LLM-generated training datasets |
+| **Navigation** | ✅ Fully functional | ✅ Same |
+| **JSON Editing** | ✅ Fully functional | ✅ Same |
+| **Validation** | ✅ Fully functional | ✅ Same |
+| **Save Action** | ⚠️ Simulated (toast + console) | ✅ Your backend (emit `@save` event) |
+| **Persistence** | ❌ None (demo only) | ✅ Your database/file system |
+| **Multi-user** | ❌ | ✅ If you add auth layer |
+
+**Integration is simple:** Pass your data as props, handle the `@save` event to persist approved items.
 
 ---
 
