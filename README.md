@@ -35,11 +35,33 @@ npm install aletheia-labeling-studio
 
 ## 🚀 Quick Start
 
+### Try the Demo
+
+```bash
+git clone https://github.com/DEVmatrose/Aletheia-Labeling-Studio.git
+cd Aletheia-Labeling-Studio
+npm install
+npm run dev
+# → Open http://localhost:5175
+```
+
+**Demo Features:**
+- ✅ 5 Mock training items (meeting protocols, customer feedback, email classification)
+- ✅ Click items in queue → Loads in editor
+- ✅ Edit JSON output with syntax highlighting
+- ✅ Quality score slider + category dropdown
+- ✅ Validate, Save (simulated), Skip buttons
+- ✅ Keyboard shortcuts work (Ctrl+S, arrows)
+- ⚠️ **Note:** Save actions are **simulated** (console log + toast notification) - no real database
+
+### Use in Your Project
+
 ```vue
 <template>
   <AletheiaLabeler
     :items="trainingItems"
     :config="config"
+    :loading="loading"
     @save="handleSave"
     @validate="handleValidate"
     @skip="handleSkip"
@@ -52,6 +74,7 @@ import { AletheiaLabeler } from 'aletheia-labeling-studio';
 import 'aletheia-labeling-studio/style.css';
 import type { AletheiaItem, AletheiaConfig } from 'aletheia-labeling-studio';
 
+const loading = ref(false);
 const trainingItems = ref<AletheiaItem[]>([
   {
     id: 'item-001',
@@ -63,11 +86,15 @@ const trainingItems = ref<AletheiaItem[]>([
     },
     status: 'pending',
     qualityScore: 0.85,
+    pillar: 'technical',
   },
 ]);
 
 const config: AletheiaConfig = {
   pillars: ['technical', 'research', 'business'],
+  showQualityScore: true,
+  allowEdit: true,
+  enableKeyboardShortcuts: true,
   validations: {
     research: {
       requireCitation: true,
@@ -76,17 +103,27 @@ const config: AletheiaConfig = {
   },
 };
 
-function handleSave(item: AletheiaItem) {
-  console.log('Approved:', item);
-  // Save to your backend
+async function handleSave(item: AletheiaItem) {
+  loading.value = true;
+  try {
+    // Save to your backend (Supabase, REST API, etc.)
+    await yourApi.saveTrainingData(item);
+    console.log('✅ Saved:', item);
+  } catch (error) {
+    console.error('❌ Save failed:', error);
+  } finally {
+    loading.value = false;
+  }
 }
 
 function handleValidate(item: AletheiaItem, isValid: boolean, message?: string) {
-  if (!isValid) alert(`Validation failed: ${message}`);
+  if (!isValid) {
+    alert(`⚠️ Validation failed: ${message}`);
+  }
 }
 
 function handleSkip(item: AletheiaItem) {
-  console.log('Skipped:', item);
+  console.log('⏭️ Skipped:', item);
 }
 </script>
 ```
@@ -176,6 +213,33 @@ async function handleSave(item: AletheiaItem) {
 - ✅ Integrating into existing Vue.js dashboard
 - ✅ Custom validation logic per category
 - ✅ Lightweight deployment (no Docker)
+
+---
+
+## 💡 How the Demo Works
+
+### Mock Data Navigation
+1. **Click any item in Queue Panel** (left) → Loads Input/Output in center
+2. **Edit JSON** in Editor Panel → Real-time validation (green border = valid, red = error)
+3. **Set Quality Score** (0-100%) and select Category in Validation Panel (right)
+4. **Click "Validate Data"** → Checks completeness
+5. **Click "Approve & Save"** → Simulates API call:
+   - Loading spinner (800ms)
+   - 90% success → ✅ Green toast: "Item saved successfully!"
+   - 10% failure → ❌ Red toast: "Failed to save. Network timeout."
+   - Console log with full item data
+   - **⚠️ Important:** Changes are NOT persisted (no real database)
+
+### What's Simulated vs. Real
+
+| Feature | Demo | Production |
+|---------|------|------------|
+| **Item Loading** | ✅ Real (from mock-data/samples.json) | Load from your backend |
+| **JSON Editing** | ✅ Real | Same |
+| **Validation** | ✅ Real | Same |
+| **Save Action** | ⚠️ Simulated (console + toast) | `@save` event → Your API call |
+| **Persistence** | ❌ None (refresh = reset) | ✅ Database |
+| **Multi-user** | ❌ | ✅ With backend state |
 
 ---
 
