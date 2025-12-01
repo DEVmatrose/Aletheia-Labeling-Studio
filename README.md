@@ -6,14 +6,14 @@
 
 # 🏛️ Aletheia Labeling Studio
 
-![Work In Progress](https://img.shields.io/badge/Status-WIP-yellow?style=for-the-badge)
-![Demo Only](https://img.shields.io/badge/Demo-No_Database-orange?style=for-the-badge)
+[![npm version](https://img.shields.io/badge/npm-v0.1.0-blue?style=for-the-badge&logo=npm)](https://www.npmjs.com/package/aletheia-labeling-studio)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?style=for-the-badge&logo=vue.js)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-> *Manual review and validation interface for LLM-generated training data.*
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Vue.js](https://img.shields.io/badge/Vue.js-3.5-4FC08D?logo=vue.js)](https://vuejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+> **A modern, type-safe Vue.js 3 labeling studio for machine learning training data curation.**
+> 
+> Manual review and validation interface for LLM-generated training data.
 
 **The Problem:** You generate training data with LLMs (GPT, Claude, etc.) but need to manually verify quality before fine-tuning. Reviewing hundreds of JSON outputs in text editors is tedious and error-prone.
 
