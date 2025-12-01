@@ -6,10 +6,20 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [vue()],
   root: resolve(__dirname, 'demo'),
-  base: './',
+  base: '/Aletheia-Labeling-Studio/',
   build: {
     outDir: resolve(__dirname, 'docs'),
-    emptyOutDir: false, // Don't delete .nojekyll and images/
+    emptyOutDir: true, // Clean build
+    rollupOptions: {
+      input: {
+        demo: resolve(__dirname, 'demo/index.html'),
+      },
+      output: {
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    }
   },
   resolve: {
     alias: {
