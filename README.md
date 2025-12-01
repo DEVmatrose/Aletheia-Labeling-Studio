@@ -68,12 +68,19 @@
 
 ## 🚀 Try the Demo
 
-**Run locally:**
+### 🌐 Live Demo
+
+**[→ Try Aletheia Online](https://devmatrose.github.io/Aletheia-Labeling-Studio/demo/)**
+
+No installation required - works directly in your browser!
+
+### 💻 Run Locally
+
 ```bash
 git clone https://github.com/DEVmatrose/Aletheia-Labeling-Studio.git
 cd Aletheia-Labeling-Studio
 npm install
-npm run dev
+npm run dev:demo
 # → http://localhost:5175
 ```
 
@@ -93,13 +100,21 @@ npm run dev
 
 ---
 
-## 📦 Installation (for your project)
+## 📦 Installation
+
+### Via npm (Coming Soon)
 
 ```bash
 npm install aletheia-labeling-studio
 ```
 
-**Note:** Package not yet published to npm. Currently in demo/development phase.
+**Note:** npm package will be published after initial feedback phase. Currently available via GitHub.
+
+### Via GitHub (Development)
+
+```bash
+npm install git+https://github.com/DEVmatrose/Aletheia-Labeling-Studio.git
+```
 
 ### Use in Your Project
 
