@@ -6,7 +6,7 @@ import { resolve } from 'path';
 export default defineConfig({
   plugins: [vue()],
   root: resolve(__dirname, 'demo'),
-  base: '/Aletheia-Labeling-Studio/',
+  base: './',
   build: {
     outDir: resolve(__dirname, 'dist/demo'),
     emptyOutDir: true,
