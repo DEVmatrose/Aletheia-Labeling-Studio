@@ -8,8 +8,8 @@ export default defineConfig({
   root: resolve(__dirname, 'demo'),
   base: './',
   build: {
-    outDir: resolve(__dirname, 'dist/demo'),
-    emptyOutDir: true,
+    outDir: resolve(__dirname, 'docs'),
+    emptyOutDir: false, // Don't delete .nojekyll and images/
   },
   resolve: {
     alias: {
