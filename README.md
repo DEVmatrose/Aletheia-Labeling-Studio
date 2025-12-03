@@ -1,6 +1,6 @@
 <div align="center">
 
-![Aletheia Logo](src/assets/altheia.png)
+![Aletheia Logo](public/altheia.png)
 
 </div>
 
@@ -30,7 +30,7 @@
 **Ideal für:** Alle Arbeitsabläufe, bei denen Sie strukturierte JSON-Trainingsdaten generieren (Sitzungsprotokolle, Kundenfeedback-Analysen, Klassifizierungsaufgaben, Frage-Antwort-Paare) und eine Validierung durch Menschen benötigen, bevor Sie diese für das Modelltraining verwenden können.
 
 
-![Before vs After Aletheia](docs/images/aletheia-header.png)
+![Before vs After Aletheia](public/header-image.png)
 ---
 
 ## ✨ Why Aletheia?
